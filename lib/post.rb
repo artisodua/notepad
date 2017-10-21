@@ -1,11 +1,19 @@
 class Post
 
+  def self.post_types
+    [Memo, Link, Task]
+  end
+
+  def self.create(type_index)
+    post_types[type_index].new
+  end
+
   def initialize
     @created_at = Time.now
     @text = nil
   end
 
-  def read_from_condole
+  def read_from_console
     # todo
   end
 
@@ -27,6 +35,6 @@ class Post
 
     file_name = @created_at.strftime("#{self.class.name}_%Y-%m-%d_%H-%M-%S.txt")
 
-    return current_puth + "/" + file_name
+    current_puth + "/../notes/" + file_name
   end
 end
